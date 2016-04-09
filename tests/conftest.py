@@ -22,6 +22,9 @@ def mocking():
 
     post_urls = {
         'send_messages': event.API_URL_EVENTS,
+        'send_link_messages': event.API_URL_EVENTS,
+        'send_multiple_messages': event.API_URL_EVENTS,
+        'send_rich_content_message': event.API_URL_EVENTS,
     }
 
     for _, url in post_urls.iteritems():

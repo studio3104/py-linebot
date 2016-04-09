@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import event
+from business_connect import event
 
 import pytest
 import responses

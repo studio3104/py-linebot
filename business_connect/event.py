@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import sys
 import requests
 import json
 
@@ -12,10 +11,7 @@ CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
 CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
 
 if CHANNEL_SECRET is None or CHANNEL_SECRET == '' or CHANNEL_ACCESS_TOKEN is None or CHANNEL_ACCESS_TOKEN == '':
-    print('Error! Environment variable CHANNEL_SECRET and CHANNEL_ACCESS_TOKEN not defined.')
-    # FIXME: we should raise execption
-    sys.exit(1)
-
+    raise ValueError('Environment variable CHANNEL_SECRET and CHANNEL_ACCESS_TOKEN not defined.')
 
 # https://developers.line.me/businessconnect/api-reference#getting_message_content
 def get_message_content(message_id):
@@ -73,11 +69,11 @@ def send_messages(to, to_channel, event_type, content):
     if len(to) > 150:
         raise ValueError('target user is up to 150. You passed %d users' % (len(to), ))
 
-    if to_channel != '1383378250':
-        raise ValueError('Acceptable toChannel is "1383378250" only')
-
-    if event_type != '138311608800106203':
-        raise ValueError('Acceptable eventType is "138311608800106203" only')
+    try:
+        validate_toChannel(to_channel)
+        validate_eventType(event_type)
+    except ValueError, e:
+        raise e
 
     if content.get('contentType') != 1:
         raise ValueError('Acceptable contentType is "1" only')
@@ -106,3 +102,11 @@ def send_messages(to, to_channel, event_type, content):
 
     result = res.text
     return {'status_code': res.status_code, 'result': result, 'status_message': status_message}
+
+def validate_toChannel(to_channel):
+    if to_channel != '1383378250':
+        raise ValueError('Acceptable toChannel is "1383378250" only')
+
+def validate_eventType(event_type):
+    if event_type != '138311608800106203':
+        raise ValueError('Acceptable eventType is "138311608800106203" only')

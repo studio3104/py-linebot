@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import event
+from business_connect import event
 
 import responses
+import pytest
 
 
 @responses.activate
@@ -49,3 +50,19 @@ def test_send_messages(mocking):
     assert 'result' in response
     assert 'status_message' in response
     assert response['status_code'] == 200
+
+def test_validate_toChannel():
+    to_channel = '1383378250'
+    event.validate_toChannel(to_channel)
+
+    to_channel = '1383378251'
+    with pytest.raises(ValueError):
+        event.validate_toChannel(to_channel)
+
+def test_validate_eventType():
+    event_type = '138311608800106203'
+    event.validate_eventType(event_type)
+
+    event_type = '138311608800106204'
+    with pytest.raises(ValueError):
+        event.validate_eventType(event_type)

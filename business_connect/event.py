@@ -1,26 +1,16 @@
 # -*- coding: utf-8 -*-
 
+from business_connect import settings
 from business_connect.validators import validate_toLength, validate_message, validate_toChannel, validate_eventType
 
-import os
 import requests
 import json
-
-API_URL_EVENTS = 'https://api.line.me/v1/events'
-API_URL_PROFILES = 'https://api.line.me/v1/profiles'
-API_URL_BOT = 'https://api.line.me/v1/bot'
-
-CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
-CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
-
-if CHANNEL_SECRET is None or CHANNEL_SECRET == '' or CHANNEL_ACCESS_TOKEN is None or CHANNEL_ACCESS_TOKEN == '':
-    raise ValueError('Environment variable CHANNEL_SECRET and CHANNEL_ACCESS_TOKEN not defined.')
 
 
 # https://developers.line.me/businessconnect/api-reference#getting_message_content
 def get_message_content(message_id):
-    endpoint = '%s/message/%s/content' % (API_URL_BOT, message_id, )
-    headers = {'X-Line-ChannelToken': CHANNEL_ACCESS_TOKEN}
+    endpoint = '%s/message/%s/content' % (settings.API_URL_BOT, message_id, )
+    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
 
     res = requests.get(endpoint, headers=headers)
 
@@ -34,8 +24,8 @@ def get_message_content(message_id):
 
 # https://developers.line.me/businessconnect/api-reference#getting_message_content_preview
 def get_previews_of_message_content(message_id):
-    endpoint = '%s/message/%s/content/preview' % (API_URL_BOT, message_id, )
-    headers = {'X-Line-ChannelToken': CHANNEL_ACCESS_TOKEN}
+    endpoint = '%s/message/%s/content/preview' % (settings.API_URL_BOT, message_id, )
+    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
 
     res = requests.get(endpoint, headers=headers)
 
@@ -53,8 +43,8 @@ def get_user_profile_information(mids):
     if mids == '':
         raise ValueError('mids must not be empty')
 
-    endpoint = API_URL_PROFILES
-    headers = {'X-Line-ChannelToken': CHANNEL_ACCESS_TOKEN}
+    endpoint = settings.API_URL_PROFILES
+    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
     payload = {'mids': mids}
 
     res = requests.get(endpoint, headers=headers, params=payload)
@@ -101,8 +91,8 @@ def _post(api_name, to, to_channel, event_type, content):
     except ValueError, e:
         raise e
 
-    endpoint = API_URL_EVENTS
-    headers = {'Content-Type': 'application/json; charset=UTF-8', 'X-Line-ChannelToken': CHANNEL_ACCESS_TOKEN}
+    endpoint = settings.API_URL_EVENTS
+    headers = {'Content-Type': 'application/json; charset=UTF-8', 'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
 
     data = json.dumps({
         'to': to,

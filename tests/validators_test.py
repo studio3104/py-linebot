@@ -5,27 +5,27 @@ from business_connect import validators
 import pytest
 
 
-def test_validate_toChannel():
-    test_data = [ # correct data
-            {'api_name':'send_messages', 'to_channel': '1383378250'},
-            {'api_name':'send_link_messages', 'to_channel': '1341301715'},
-            {'api_name':'send_multiple_messages', 'to_channel': '1383378250'},
-            {'api_name':'send_rich_content_messages', 'to_channel': '1383378250'},
-            # {'api_name':'', 'to_channel': ''},
-            ]
-    for d in test_data:
-        validators.validate_toChannel(d['api_name'], d['to_channel'])
+class TestValidateToChannel:
+    @pytest.mark.parametrize(('params'), [
+        {'api_name': 'send_messages', 'to_channel': '1383378250'},
+        {'api_name': 'send_link_messages', 'to_channel': '1341301715'},
+        {'api_name': 'send_multiple_messages', 'to_channel': '1383378250'},
+        {'api_name': 'send_rich_content_messages', 'to_channel': '1383378250'},
+    ])
+    def test_valid_validate_toChannel(self, params):
+        result = validators.validate_toChannel(params['api_name'], params['to_channel'])
+        assert result is None
 
-    test_data = [ # correct data
-            {'api_name':'send_messages', 'to_channel': '1383378251'},
-            {'api_name':'send_link_messages', 'to_channel': '1341301716'},
-            {'api_name':'send_multiple_messages', 'to_channel': '1383378251'},
-            {'api_name':'send_rich_content_messages', 'to_channel': '1383378251'},
-            # {'api_name':'', 'to_channel': ''},
-            ]
-    with pytest.raises(ValueError):
-        for d in test_data:
-            validators.validate_toChannel(d['api_name'], d['to_channel'])
+    @pytest.mark.parametrize(('params'), [
+        {'api_name': 'send_messages', 'to_channel': '1383378251'},
+        {'api_name': 'send_link_messages', 'to_channel': '1341301716'},
+        {'api_name': 'send_multiple_messages', 'to_channel': '1383378251'},
+        {'api_name': 'send_rich_content_messages', 'to_channel': '1383378251'},
+    ])
+    def test_invalid_validate_toChannel(self, params):
+        with pytest.raises(ValueError):
+            validators.validate_toChannel(params['api_name'], params['to_channel'])
+
 
 def test_validate_eventType():
     test_data = [ # correct data

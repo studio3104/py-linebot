@@ -1,10 +1,19 @@
 # -*- coding: utf-8 -*-
 
-import os
+from __future__ import absolute_import
 
-API_URL_EVENTS = 'https://api.line.me/v1/events'
-API_URL_PROFILES = 'https://api.line.me/v1/profiles'
-API_URL_BOT = 'https://api.line.me/v1/bot'
+from urlparse import urlparse, urljoin
+import os
+import validators
+
+api_base_url = urlparse('https://api.line.me/v1/')
+env_api_base_url = os.getenv('API_URL_BASE')
+if env_api_base_url is not None and validators.url(env_api_base_url):
+    api_base_url = urlparse(env_api_base_url)
+
+API_URL_EVENTS = urljoin(api_base_url.geturl(), 'events')
+API_URL_PROFILES = urljoin(api_base_url.geturl(), 'profiles')
+API_URL_BOT = urljoin(api_base_url.geturl(), 'bot')
 
 CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
 CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')

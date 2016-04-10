@@ -128,7 +128,7 @@ def validate_toLength(to):
 # Just for send_messages, cannot use send_multiple_messages
 def validate_message(content):
     if 'contentType' in content:
-        if content.get('contentType') not in range(1, 9) :
+        if content.get('contentType') not in range(1, 9):
             raise ValueError('Acceptable contentType is between 1 and 8')
     else:
         raise ValueError('Property contentType is required')

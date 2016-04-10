@@ -50,6 +50,7 @@ def test_send_messages(mocking):
     assert 'status_message' in response
     assert response['status_code'] == 200
 
+
 @responses.activate
 def test_send_link_messages(mocking):
     to_channel = '1341301715'
@@ -57,30 +58,30 @@ def test_send_link_messages(mocking):
     response = event.send_link_messages(
         [mocking['mids'], ], to_channel, event_type,
         {
-            "content": {
-               "templateId": "template_id_3",
-               "previewUrl": "http://example.com/images/brown.png",
-               "textParams": {
-                    "text_param": "Brown"
-               },
-               "subTextParams": {
-                    "subtext_param": "Cony"
-               },
-               "altTextParams": {
-                    "alttext_param": "Help!"
-               },
-               "linkTextParams": {
-                    "lt_p": "Happy"
-               },
-               "aLinkUriParams": {
-                    "alu_p": "foo"
-               },
-               "iLinkUriParams": {
-                    "ilu_p": "bar"
-               },
-               "linkUriParams": {
-                    "lu_p": "baz"
-               }
+            'content': {
+                'templateId': 'template_id_3',
+                'previewUrl': 'http://example.com/images/brown.png',
+                'textParams': {
+                    'text_param': 'Brown'
+                },
+                'subTextParams': {
+                    'subtext_param': 'Cony'
+                },
+                'altTextParams': {
+                    'alttext_param': 'Help!'
+                },
+                'linkTextParams': {
+                    'lt_p': 'Happy'
+                },
+                'aLinkUriParams': {
+                    'alu_p': 'foo'
+                },
+                'iLinkUriParams': {
+                    'ilu_p': 'bar'
+                },
+                'linkUriParams': {
+                    'lu_p': 'baz'
+                }
             }
         }
     )
@@ -89,6 +90,7 @@ def test_send_link_messages(mocking):
     assert 'status_message' in response
     assert response['status_code'] == 200
 
+
 @responses.activate
 def test_send_multiple_messages(mocking):
     to_channel = '1383378250'
@@ -96,17 +98,17 @@ def test_send_multiple_messages(mocking):
     response = event.send_multiple_messages(
         [mocking['mids'], ], to_channel, event_type,
         {
-            "content": {
-                "messageNotified": 0,
-                "messages": [
+            'content': {
+                'messageNotified': 0,
+                'messages': [
                     {
-                        "contentType": 1,
-                        "text": "First message"
+                        'contentType': 1,
+                        'text': 'First message'
                     },
                     {
-                        "contentType": 2,
-                        "originalContentUrl": "http://original/content/url",
-                        "previewImageUrl": "http://preview/image/url",
+                        'contentType': 2,
+                        'originalContentUrl': 'http://original/content/url',
+                        'previewImageUrl': 'http://preview/image/url',
                     }
                 ]
             }
@@ -117,6 +119,7 @@ def test_send_multiple_messages(mocking):
     assert 'status_message' in response
     assert response['status_code'] == 200
 
+
 @responses.activate
 def test_send_rich_messages(mocking):
     to_channel = '1383378250'
@@ -124,14 +127,14 @@ def test_send_rich_messages(mocking):
     response = event.send_rich_content_messages(
         [mocking['mids'], ], to_channel, event_type,
         {
-            "content": {
-                "contentType": 12,
-                "toType": 1,
-                "contentMetadata": {
-                    "DOWNLOAD_URL": "http://example.com/bot/images/12345",
-                    "SPEC_REV": "1",
-                    "ALT_TEXT": "Please visit our homepage and the item page you wish.",
-                    "MARKUP_JSON": "{\"canvas\":{...},\"images\":{...},\"actions\":{},\"scenes\":{...}}"
+            'content': {
+                'contentType': 12,
+                'toType': 1,
+                'contentMetadata': {
+                    'DOWNLOAD_URL': 'http://example.com/bot/images/12345',
+                    'SPEC_REV': '1',
+                    'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+                    'MARKUP_JSON': '{\'canvas\':{...},\'images\':{...},\'actions\':{},\'scenes\':{...}}'
                 }
             }
         }

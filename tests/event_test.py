@@ -50,6 +50,7 @@ def test_send_messages(mocking):
     assert 'status_message' in response
     assert response['status_code'] == 200
 
+
 @responses.activate
 def test_send_link_messages(mocking):
     to_channel = '1341301715'
@@ -89,6 +90,7 @@ def test_send_link_messages(mocking):
     assert 'status_message' in response
     assert response['status_code'] == 200
 
+
 @responses.activate
 def test_send_multiple_messages(mocking):
     to_channel = '1383378250'
@@ -116,6 +118,7 @@ def test_send_multiple_messages(mocking):
     assert 'result' in response
     assert 'status_message' in response
     assert response['status_code'] == 200
+
 
 @responses.activate
 def test_send_rich_messages(mocking):

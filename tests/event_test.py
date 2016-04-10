@@ -59,29 +59,29 @@ def test_send_link_messages(mocking):
         [mocking['mids'], ], to_channel, event_type,
         {
             "content": {
-               "templateId": "template_id_3",
-               "previewUrl": "http://example.com/images/brown.png",
-               "textParams": {
+                "templateId": "template_id_3",
+                "previewUrl": "http://example.com/images/brown.png",
+                "textParams": {
                     "text_param": "Brown"
-               },
-               "subTextParams": {
+                },
+                "subTextParams": {
                     "subtext_param": "Cony"
-               },
-               "altTextParams": {
+                },
+                "altTextParams": {
                     "alttext_param": "Help!"
-               },
-               "linkTextParams": {
+                },
+                "linkTextParams": {
                     "lt_p": "Happy"
-               },
-               "aLinkUriParams": {
+                },
+                "aLinkUriParams": {
                     "alu_p": "foo"
-               },
-               "iLinkUriParams": {
+                },
+                "iLinkUriParams": {
                     "ilu_p": "bar"
-               },
-               "linkUriParams": {
+                },
+                "linkUriParams": {
                     "lu_p": "baz"
-               }
+                }
             }
         }
     )

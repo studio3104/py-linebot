@@ -155,10 +155,10 @@ def validate_message(content):
 
 def validate_toChannel(api_name, to_channel):
     if api_name in ('send_messages', 'send_multiple_messages', 'send_rich_content_messages'):
-            if to_channel == SEND_MESSAGE_CHANNEL:
-                return
-            else:
-                raise ValueError('Acceptable toChannel is "%s" only' % (SEND_MESSAGE_CHANNEL, ))
+        if to_channel == SEND_MESSAGE_CHANNEL:
+            return
+        else:
+            raise ValueError('Acceptable toChannel is "%s" only' % (SEND_MESSAGE_CHANNEL, ))
     elif api_name == 'send_link_messages':
         if to_channel == SEND_LINK_MESSAGE_CHANNEL:
             return

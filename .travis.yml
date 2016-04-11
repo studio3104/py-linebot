@@ -1,6 +1,6 @@
 language: python
 env:
-  - CHANNEL_SECRET=secret CHANNEL_ACCESS_TOKEN=token
+  - CHANNEL_ID=id CHANNEL_SECRET=secret CHANNEL_MID=mid
 cache: pip
 python:
   - "2.7"

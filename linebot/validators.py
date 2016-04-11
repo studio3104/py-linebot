@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 
-SEND_MESSAGE_CHANNEL = '1383378250'
-SEND_LINK_MESSAGE_CHANNEL = '1341301715'
-SEND_MULTIPLE_MESSAGE_CHANNEL = SEND_MESSAGE_CHANNEL
-SEND_RICH_MESSAGE_CHANNEL = SEND_MESSAGE_CHANNEL
-SEND_MESSAGE_EVENT_TYPE = '138311608800106203'
-SEND_LINK_MESSAGE_EVENT_TYPE = '137299299800026303'
-SEND_MULTIPLE_MESSAGE_EVENT = '140177271400161403'
-SEND_RICH_MESSAGE_EVENT = SEND_MESSAGE_EVENT_TYPE
-
+from linebot import settings
 
 def validate_toLength(to):
     if len(to) > 150:
@@ -38,39 +30,39 @@ def validate_message(content):
 
 def validate_toChannel(api_name, to_channel):
     if api_name in ('send_messages', 'send_multiple_messages', 'send_rich_content_messages'):
-        if to_channel == SEND_MESSAGE_CHANNEL:
+        if to_channel == settings.SEND_MESSAGE_CHANNEL:
             return
         else:
-            raise ValueError('Acceptable toChannel is "%s" only' % (SEND_MESSAGE_CHANNEL, ))
+            raise ValueError('Acceptable toChannel is "%s" only' % (settings.SEND_MESSAGE_CHANNEL, ))
     elif api_name == 'send_link_messages':
-        if to_channel == SEND_LINK_MESSAGE_CHANNEL:
+        if to_channel == settings.SEND_LINK_MESSAGE_CHANNEL:
             return
         else:
-            raise ValueError('Acceptable toChannel is "%s" only' % (SEND_LINK_MESSAGE_CHANNEL, ))
+            raise ValueError('Acceptable toChannel is "%s" only' % (settings.SEND_LINK_MESSAGE_CHANNEL, ))
     else:
         raise ValueError('unknown api_name: %s' % (api_name, ))
 
 
 def validate_eventType(api_name, event_type):
     if api_name in ('send_messages', 'send_rich_content_messages'):
-        if event_type == SEND_MESSAGE_EVENT_TYPE:
+        if event_type == settings.SEND_MESSAGE_EVENT_TYPE:
             return
         else:
-            raise ValueError('Acceptable eventType is "%s" only' % (SEND_MESSAGE_EVENT_TYPE, ))
+            raise ValueError('Acceptable eventType is "%s" only' % (settings.SEND_MESSAGE_EVENT_TYPE, ))
     elif api_name == 'send_link_messages':
-        if event_type == SEND_LINK_MESSAGE_EVENT_TYPE:
+        if event_type == settings.SEND_LINK_MESSAGE_EVENT_TYPE:
             return
         else:
-            raise ValueError('Acceptable eventType is "%s" only' % (SEND_LINK_MESSAGE_EVENT_TYPE, ))
+            raise ValueError('Acceptable eventType is "%s" only' % (settings.SEND_LINK_MESSAGE_EVENT_TYPE, ))
     elif api_name == 'send_multiple_messages':
-        if event_type == SEND_MULTIPLE_MESSAGE_EVENT:
+        if event_type == settings.SEND_MULTIPLE_MESSAGE_EVENT:
             return
         else:
-            raise ValueError('Acceptable eventType is "%s" only' % (SEND_MULTIPLE_MESSAGE_CHANNEL, ))
+            raise ValueError('Acceptable eventType is "%s" only' % (settings.SEND_MULTIPLE_MESSAGE_CHANNEL, ))
     elif api_name == 'send_link_messages':
-        if event_type == SEND_LINK_MESSAGE_EVENT_TYPE:
+        if event_type == settings.SEND_LINK_MESSAGE_EVENT_TYPE:
             return
         else:
-            raise ValueError('Acceptable eventType is "%s" only' % (SEND_LINK_MESSAGE_EVENT_TYPE, ))
+            raise ValueError('Acceptable eventType is "%s" only' % (settings.SEND_LINK_MESSAGE_EVENT_TYPE, ))
     else:
         raise ValueError('unknown api_name: %s' % (api_name, ))

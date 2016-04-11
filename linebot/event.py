@@ -68,6 +68,16 @@ def send_messages(to, to_channel, event_type, content):
     return _post('send_messages', to, to_channel, event_type, content)
 
 
+# https://developers.line.me/bot-api/api-reference#sending_message_text
+def send_message_text(to, text):
+    content = {
+        'contentType': 1,  # fixed value
+        'toType': 1,  # 1 = user
+        'text': text,
+    }
+    send_messages(to, 1383378250, '138311608800106203', content)
+
+
 # https://developers.line.me/businessconnect/api-reference#sending_link_message
 def send_link_messages(to, to_channel, event_type, content):
     return _post('send_link_messages', to, to_channel, event_type, content)

@@ -10,7 +10,7 @@ import json
 # https://developers.line.me/businessconnect/api-reference#getting_message_content
 def get_message_content(message_id):
     endpoint = '%s/message/%s/content' % (settings.API_URL_BOT, message_id, )
-    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
+    headers = {}  # {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
 
     res = requests.get(endpoint, headers=headers)
 
@@ -25,7 +25,7 @@ def get_message_content(message_id):
 # https://developers.line.me/businessconnect/api-reference#getting_message_content_preview
 def get_previews_of_message_content(message_id):
     endpoint = '%s/message/%s/content/preview' % (settings.API_URL_BOT, message_id, )
-    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
+    headers = {}  # {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
 
     res = requests.get(endpoint, headers=headers)
 
@@ -44,7 +44,7 @@ def get_user_profile_information(mids):
         raise ValueError('mids must not be empty')
 
     endpoint = settings.API_URL_PROFILES
-    headers = {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
+    headers = {}  # {'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
     payload = {'mids': mids}
 
     res = requests.get(endpoint, headers=headers, params=payload)

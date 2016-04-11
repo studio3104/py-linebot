@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from urlparse import urlparse, urljoin
 import os
 
-api_base_url = urlparse('https://trialbot-api.line.me/v1/events/')
+api_base_url = urlparse('https://trialbot-api.line.me/v1/')
 API_URL_EVENTS = urljoin(api_base_url.geturl(), 'events')
 API_URL_PROFILES = urljoin(api_base_url.geturl(), 'profiles')
 API_URL_BOT = urljoin(api_base_url.geturl(), 'bot')

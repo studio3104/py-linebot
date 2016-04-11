@@ -92,7 +92,12 @@ def _post(api_name, to, to_channel, event_type, content):
         raise e
 
     endpoint = settings.API_URL_EVENTS
-    headers = {'Content-Type': 'application/json; charset=UTF-8', 'X-Line-ChannelToken': settings.CHANNEL_ACCESS_TOKEN}
+    headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'X-Line-ChannelID': settings.CHANNEL_ID,
+        'X-Line-ChannelSecret': settings.CHANNEL_SECRET,
+        'X-Line-Trusted-User-With-ACL': settings.CHANNEL_MID,
+    }
 
     data = json.dumps({
         'to': to,

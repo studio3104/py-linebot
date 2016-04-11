@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from business_connect import validators
+from linebot import validators
 
 import pytest
 

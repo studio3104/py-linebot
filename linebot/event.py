@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from business_connect import settings
-from business_connect.validators import validate_toLength, validate_message, validate_toChannel, validate_eventType
+from linebot import settings
+from linebot.validators import validate_toLength, validate_message, validate_toChannel, validate_eventType
 
 import requests
 import json

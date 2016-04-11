@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from business_connect import event
-from business_connect import settings
+from linebot import event
+from linebot import settings
 
 import pytest
 import responses

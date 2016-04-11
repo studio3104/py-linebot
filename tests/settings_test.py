@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from business_connect.settings import API_URL_EVENTS, API_URL_PROFILES, API_URL_BOT
+from linebot.settings import API_URL_EVENTS, API_URL_PROFILES, API_URL_BOT
 
 
 def test_default_urls():

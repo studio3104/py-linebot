@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from business_connect import event
+from linebot import event
 
 import responses
 

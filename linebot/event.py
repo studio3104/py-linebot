@@ -59,13 +59,19 @@ def get_user_profile_information(mids):
 
 
 # https://developers.line.me/businessconnect/api-reference#sending_message
-def send_messages(to, to_channel, event_type, content):
+def send_messages(to, content):
     try:
         validate_message(content)
     except ValueError, e:
         raise e
 
-    return _post('send_messages', to, to_channel, event_type, content)
+    return _post(
+        'send_messages',
+        to,
+        settings.SEND_MESSAGE_CHANNEL,
+        settings.SEND_MESSAGE_EVENT_TYPE,
+        content
+    )
 
 
 # https://developers.line.me/bot-api/api-reference#sending_message_text
@@ -75,7 +81,7 @@ def send_message_text(to, text):
         'toType': 1,  # 1 = user
         'text': text,
     }
-    send_messages(to, 1383378250, '138311608800106203', content)
+    send_messages(to, content)
 
 
 # https://developers.line.me/businessconnect/api-reference#sending_link_message

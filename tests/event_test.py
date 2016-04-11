@@ -35,10 +35,8 @@ def test_get_user_profile_information(mocking):
 @responses.activate
 def test_send_messages(mocking):
     # they are fixed values, ref: https://developers.line.me/businessconnect/api-reference#sending_message
-    to_channel = '1383378250'
-    event_type = '138311608800106203'
     response = event.send_messages(
-        [mocking['mids'], ], to_channel, event_type,
+        [mocking['mids'], ],
         {
             'contentType': 1,
             'toType': 1,
